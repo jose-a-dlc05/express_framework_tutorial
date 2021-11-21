@@ -2,9 +2,9 @@
 
 ## Define and understand the following methods,
 
-- express.get()
-- req.params() - route parameters
-- res.send()
-- req.query()
+- express.use()
+- express.static
+- join()
+- res.sendFile()
 
-## Understand when to use parameters vs query strings
+## Static files : HTML file, CSS, Client Side JS, Images, Videos
