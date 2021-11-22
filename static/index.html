@@ -8,7 +8,7 @@
 		<title>Tutorial</title>
 	</head>
 	<body>
-		<form action="/" method="POST">
+		<form action="/" method="POST" id="form">
 			<div class="form-group">
 				<label for="email">Email address:</label>
 				<input type="email" name="email" id="email" class="form-control" />
@@ -24,5 +24,27 @@
 			</div>
 			<button type="submit">Submit</button>
 		</form>
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.min.js"
+			integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+			crossorigin="anonymous"
+		></script>
+		<script>
+			$(document).ready(() => {
+				$('#form').submit((e) => {
+					e.preventDefault();
+					$.ajax({
+						url: '/',
+						type: 'post',
+						contentType: 'application/json',
+						data: JSON.stringify($('#form').serializeArray()),
+						success: (response) => {
+							console.log('successfully got response');
+							console.log(response);
+						},
+					});
+				});
+			});
+		</script>
 	</body>
 </html>

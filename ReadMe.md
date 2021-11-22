@@ -2,6 +2,4 @@
 
 ## Define and understand the following:
 
-- body-parser
-- urlencoded
-- app.post()
+- json() (bodyParser)
