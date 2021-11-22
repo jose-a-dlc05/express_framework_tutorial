@@ -2,6 +2,7 @@
 import { Request, Response } from 'express';
 const express = require('express');
 const path = require('path');
+const Joi = require('joi');
 const bodyParser = require('body-parser');
 // 2. Declare const app and initialize with express function returing object
 const app = express();
@@ -18,8 +19,19 @@ app.get('/', (req: Request, res: Response) => {
 // 7. Use the post method to log out the entered information from the form
 app.post('/', (req: Request, res: Response) => {
 	console.log(req.body);
-
-	res.json({ success: true });
+	// a. Declare a const schema and initialize it with the Joi library where it has an object function that takes in an object as an argument. The object is basically the blueprint or schema of what you want to validate.
+	const schema = Joi.object({
+		email: Joi.string().trim().email().required(),
+		password: Joi.string().min(5).max(10).required(),
+	});
+	// b. Declare a result variable that is initialize with the schema's method called validate and use the request argument's body method to take in the object of what was entered from the client.
+	let result = schema.validate(req.body);
+	// c. Create a condition where if the result is falsy then log out the error message
+	if (!result) {
+		console.log(result.error?.message);
+	}
+	// d. log out the result if no issues
+	console.log(result);
 });
 // 8. Use the listen method to begin running server
 app.listen(3000);

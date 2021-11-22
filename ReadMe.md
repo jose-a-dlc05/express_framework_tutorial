@@ -2,4 +2,6 @@
 
 ## Define and understand the following:
 
-- json() (bodyParser)
+## Explain why you would want to validate data server side
+
+## Explain what a schema is
